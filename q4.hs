@@ -6,7 +6,3 @@
 maiores_que :: (Ord a) => a -> [a] -> [a]
 maiores_que ref lista = filter (> ref) lista
 
-
----------------------main-----------------------
-main :: IO ()
-main = print (maiores_que 10 [4,6,30,3,15,3,10,7])

@@ -6,7 +6,3 @@ ultimo :: [a] -> a
 ultimo []     = error "Lista vazia: não existe último elemento."
 ultimo [x]    = x
 ultimo (_:xs) = ultimo xs
-
--- Testando no main
-main :: IO ()
-main = print (ultimo [1])

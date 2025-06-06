@@ -1,3 +1,4 @@
+-- Função 22
 -- Insere um elemento na posição correta em uma lista ordenada
 insere_ordenado :: (Ord t) => t -> [t] -> [t]
 insere_ordenado x [] = [x]                          -- Se a lista está vazia, só retorna o elemento

@@ -1,3 +1,5 @@
+-- Função 34
+
 -- palindromo :: verifica se uma lista é igual a ela mesma invertida
 -- Vamos comparar o primeiro e o último elemento da lista recursivamente
 palindromo :: (Eq t) => [t] -> Bool
@@ -31,9 +33,3 @@ removerUltimo :: [t] -> [t]
 removerUltimo [_] = []
 removerUltimo (x:xs) = x : removerUltimo xs
 
--- main de teste
-main :: IO ()
-main = do
-    print (palindromo "ana")
-    print (palindromo "ovo")
-    print (palindromo "abbdbbaa")

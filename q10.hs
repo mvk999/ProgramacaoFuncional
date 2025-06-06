@@ -34,6 +34,3 @@ maiores n lista = filtrar lista maioresSelecionados
         maiores = ordenarDec [a | a <- xs, a > x]
         menores = ordenarDec [a | a <- xs, a <= x]
 
----------------main------------------
-main :: IO ()
-main = print (maiores 4 [9,6,5,7,8,4,4,7])

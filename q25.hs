@@ -1,3 +1,5 @@
+-- Função 25
+
 rodar_esquerda :: Int -> [a] -> [a]
 rodar_esquerda _ [] = []  -- Lista vazia não muda
 rodar_esquerda n xs

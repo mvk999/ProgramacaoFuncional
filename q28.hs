@@ -1,3 +1,5 @@
+
+-- Função 28
 -- Função principal
 primeiras_maiusculas :: String -> String
 primeiras_maiusculas [] = []

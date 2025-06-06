@@ -1,10 +1,9 @@
+
+-- Função 37
 -- bolha :: recebe uma lista de inteiros
 -- retorna a lista ordenada usando o método da bolha burra
 -- Não usa a classe Ord — usa Int diretamente (comparações com números)
 -- Repetimos várias passagens pela lista, sempre empurrando o maior para o final
-
--- ghci> bolha [4,2,5,1,3]
--- [1,2,3,4,5]
 
 bolha :: [Int] -> [Int]
 bolha lista = aplicarVezes (length lista) lista
@@ -22,6 +21,3 @@ passoBolha (atual:seguinte:resto)
     | atual > seguinte = seguinte : passoBolha (atual : resto)
     | otherwise        = atual    : passoBolha (seguinte : resto)
 passoBolha listaFinal = listaFinal
--- main de teste
-main :: IO ()
-main = print (bolha [4,2,5,1,3])
