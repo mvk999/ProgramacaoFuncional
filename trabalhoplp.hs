@@ -222,3 +222,57 @@ mediana xs
 
     meioMenosUm = if impar tamanhoLista then meio else meio - 1
 
+--Função para dividir 
+meu_div :: Int -> Int -> Int
+meu_div _ 0 = error "Divisão por zero"
+meu_div a b
+  | a < b     = 0
+  | otherwise = 1 + meu_div (a - b) b
+
+
+
+-- Função 34: palindromo
+-- Verifica se uma lista (string, número, qualquer lista) é palíndromo
+palindromo :: Eq a => [a] -> Bool
+palindromo []  = True                        -- Lista vazia é palíndromo
+palindromo [_] = True                        -- Lista com 1 elemento é palíndromo
+palindromo xs
+    | primeiro == ultimo = palindromo (meio xs)    -- Compara extremos e chama recursivamente no "miolo"
+    | otherwise          = False
+  where
+    primeiro = cabeca xs                    -- Pega o primeiro elemento
+    ultimo   = ult xs                       -- Pega o último elemento
+
+    -- Retorna o "miolo" da lista (sem o primeiro e o último)
+    meio [] = []
+    meio [_] = []
+    meio (_:ys) = removerUltimo ys          -- Usa sua função removerUltimo!
+
+    -- Sua função já criada para pegar o último elemento
+    ult :: [a] -> a
+    ult []     = error "Lista vazia"
+    ult [x]    = x
+    ult (_:ys) = ult ys
+
+    -- Pega o primeiro elemento (cabeça)
+    cabeca :: [a] -> a
+    cabeca (z:_) = z
+    cabeca []    = error "Lista vazia"
+
+
+
+-- Função 37: bolha
+-- Ordena uma lista usando o método da bolha (bubble sort burro)
+bolha :: (Ord a) => [a] -> [a]
+bolha xs = bolhaAux (tamanho xs) xs
+  where
+    -- Repete o processo de bolha n vezes (n = tamanho da lista)
+    bolhaAux 0 ys = ys
+    bolhaAux n ys = bolhaAux (n-1) (bolhaPasso ys)
+
+    -- Um "passo" do bubble sort: empurra o maior para o final
+    bolhaPasso [] = []
+    bolhaPasso [x] = [x]
+    bolhaPasso (x:y:zs)
+      | x > y     = y : bolhaPasso (x:zs)
+      | otherwise = x : bolhaPasso (y:zs)
