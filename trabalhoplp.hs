@@ -186,3 +186,39 @@ paraMinuscula :: Char -> Char
 paraMinuscula c
   | c >= 'A' && c <= 'Z' = toEnum (fromEnum c + 32)
   | otherwise            = c
+
+
+-- Função 31: mediana
+-- Calcula a mediana de uma lista de números racionais
+mediana :: [Float] -> Float
+mediana [] = error "Lista vazia não tem mediana."
+mediana xs
+  | impar tamanhoLista = elementoMeio
+  | otherwise          = (elementoMeio + proximoMeio) / 2
+  where
+    listaOrdenada = ordena xs
+    tamanhoLista = tamanho listaOrdenada
+
+    -- Retorna True se o número é ímpar
+    impar n = meu_mod n 2 == 1
+
+    -- Divisão inteira feita à mão
+    meu_div _ 0 = error "Divisão por zero"
+    meu_div a b
+      | a < b     = 0
+      | otherwise = 1 + meu_div (a - b) b
+
+    meio = meu_div tamanhoLista 2
+
+    -- Função para pegar o n-ésimo elemento da lista
+    nEsimo :: [a] -> Int -> a
+    nEsimo (y:_)  0 = y
+    nEsimo (_:ys) n = nEsimo ys (n-1)
+    nEsimo []    _  = error "Índice fora da lista."
+
+    -- Elementos centrais
+    elementoMeio  = nEsimo listaOrdenada meioMenosUm
+    proximoMeio   = nEsimo listaOrdenada meio
+
+    meioMenosUm = if impar tamanhoLista then meio else meio - 1
+
