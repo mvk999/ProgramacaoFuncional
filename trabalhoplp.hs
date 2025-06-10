@@ -45,27 +45,18 @@ maiores n xs = filtra xs (n_maiores n xs)
       | el == y   = ys
       | otherwise = y : removerPrimeira el ys
 
--- Função auxiliar
--- Retorna uma lista dos n maiores elementos, sem se preocupar com ordem
-n_maiores :: (Ord a) => Int -> [a] -> [a]
-n_maiores 0 _  = []
-n_maiores _ [] = []
-n_maiores n xs = maior : n_maiores (n-1) (removerPrimeira maior xs)
-  where
-    maior = maior_elemento xs
+    n_maiores 0 _  = []
+    n_maiores _ [] = []
+    n_maiores n xs = maior : n_maiores (n-1) (removerPrimeira maior xs)
+      where
+        maior = maior_elemento xs
 
-    -- Retorna o maior elemento de uma lista (não vazia)
-    maior_elemento [x] = x
-    maior_elemento (x:xs)
-      | x > y     = x
-      | otherwise = y
-      where y = maior_elemento xs
-
-    -- Remove a primeira ocorrência de um elemento na lista
-    removerPrimeira _ [] = []
-    removerPrimeira el (y:ys)
-      | el == y   = ys
-      | otherwise = y : removerPrimeira el ys
+        -- Função auxiliar para achar o maior elemento
+        maior_elemento [x] = x
+        maior_elemento (x:xs)
+          | x > y     = x
+          | otherwise = y
+          where y = maior_elemento xs
 
 
 
@@ -99,6 +90,12 @@ mesmos_elementos xs ys =
     listaA = remover_repetidos xs
     listaB = remover_repetidos ys
 
+    -- Remove elementos repetidos da lista
+    remover_repetidos [] = []
+    remover_repetidos (x:xs)
+      | pertence x xs = remover_repetidos xs
+      | otherwise     = x : remover_repetidos xs
+
     -- Usa a função 'pertence' já definida no seu código!
     todos_em [] _ = True
     todos_em (x:xs) ys
@@ -112,27 +109,17 @@ pertence a (b:bs)
   | a == b    = True
   | otherwise = pertence a bs
 
--- Remove elementos repetidos de uma lista
-remover_repetidos :: Eq a => [a] -> [a]
-remover_repetidos [] = []
-remover_repetidos (x:xs)
-    | pertence x xs = remover_repetidos xs  
-    | otherwise     = x : remover_repetidos xs
-
-
-
 
 --Função 22:Ordena uma lista usando insertion sort
 ordena :: (Ord a) => [a] -> [a]
 ordena [] = []                                         -- Lista vazia já está ordenada
 ordena (x:xs) = insere_ordenado x (ordena xs)          -- Ordena o resto e insere x no lugar certo
-
--- Insere um elemento na posição correta numa lista ordenada
-insere_ordenado :: (Ord a) => a -> [a] -> [a]
-insere_ordenado x [] = [x]                             -- Se a lista está vazia, só retorna x
-insere_ordenado x (y:ys)
-    | x <= y    = x : y : ys                           -- Se x é menor ou igual a y, põe x antes de y
-    | otherwise = y : insere_ordenado x ys             -- Senão, continua procurando o lugar
+  where
+    -- Insere um elemento na posição correta numa lista ordenada
+    insere_ordenado x [] = [x]                             -- Lista vazia: só retorna x
+    insere_ordenado x (y:ys)
+      | x <= y    = x : y : ys                            -- Coloca x antes de y
+      | otherwise = y : insere_ordenado x ys              -- Continua procurando o lugar
 
 
 
@@ -250,7 +237,7 @@ mediana xs
     -- Retorna True se o número é ímpar
     impar n = meu_mod n 2 == 1
 
-    -- Divisão inteira feita à mão
+    -- Divisão inteira feita à mão (local, só existe dentro de mediana)
     meu_div _ 0 = error "Divisão por zero"
     meu_div a b
       | a < b     = 0
@@ -269,13 +256,6 @@ mediana xs
     proximoMeio   = nEsimo listaOrdenada meio
 
     meioMenosUm = if impar tamanhoLista then meio else meio - 1
-
---Função para dividir 
-meu_div :: Int -> Int -> Int
-meu_div _ 0 = error "Divisão por zero"
-meu_div a b
-  | a < b     = 0
-  | otherwise = 1 + meu_div (a - b) b
 
 
 
