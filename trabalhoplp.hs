@@ -175,17 +175,65 @@ primeiras_maiusculas (x:xs) = paraMaiuscula x : processa xs x
       | ant == ' ' = paraMaiuscula y : processa ys y  -- Após espaço, põe maiúsculo
       | otherwise  = paraMinuscula y : processa ys y  -- Senão, põe minúsculo
 
--- Transforma letra minúscula em maiúscula
+-- Transforma letra minúscula em maiúscula (sem biblioteca)
 paraMaiuscula :: Char -> Char
-paraMaiuscula c
-  | c >= 'a' && c <= 'z' = toEnum (fromEnum c - 32)  -- ASCII: diferença entre 'a' e 'A' é 32
-  | otherwise            = c
+paraMaiuscula 'a' = 'A'
+paraMaiuscula 'b' = 'B'
+paraMaiuscula 'c' = 'C'
+paraMaiuscula 'd' = 'D'
+paraMaiuscula 'e' = 'E'
+paraMaiuscula 'f' = 'F'
+paraMaiuscula 'g' = 'G'
+paraMaiuscula 'h' = 'H'
+paraMaiuscula 'i' = 'I'
+paraMaiuscula 'j' = 'J'
+paraMaiuscula 'k' = 'K'
+paraMaiuscula 'l' = 'L'
+paraMaiuscula 'm' = 'M'
+paraMaiuscula 'n' = 'N'
+paraMaiuscula 'o' = 'O'
+paraMaiuscula 'p' = 'P'
+paraMaiuscula 'q' = 'Q'
+paraMaiuscula 'r' = 'R'
+paraMaiuscula 's' = 'S'
+paraMaiuscula 't' = 'T'
+paraMaiuscula 'u' = 'U'
+paraMaiuscula 'v' = 'V'
+paraMaiuscula 'w' = 'W'
+paraMaiuscula 'x' = 'X'
+paraMaiuscula 'y' = 'Y'
+paraMaiuscula 'z' = 'Z'
+paraMaiuscula c   = c   -- Mantém outros caracteres como estão
 
--- Transforma letra maiúscula em minúscula
+-- Transforma letra maiúscula em minúscula (sem biblioteca)
 paraMinuscula :: Char -> Char
-paraMinuscula c
-  | c >= 'A' && c <= 'Z' = toEnum (fromEnum c + 32)
-  | otherwise            = c
+paraMinuscula 'A' = 'a'
+paraMinuscula 'B' = 'b'
+paraMinuscula 'C' = 'c'
+paraMinuscula 'D' = 'd'
+paraMinuscula 'E' = 'e'
+paraMinuscula 'F' = 'f'
+paraMinuscula 'G' = 'g'
+paraMinuscula 'H' = 'h'
+paraMinuscula 'I' = 'i'
+paraMinuscula 'J' = 'j'
+paraMinuscula 'K' = 'k'
+paraMinuscula 'L' = 'l'
+paraMinuscula 'M' = 'm'
+paraMinuscula 'N' = 'n'
+paraMinuscula 'O' = 'o'
+paraMinuscula 'P' = 'p'
+paraMinuscula 'Q' = 'q'
+paraMinuscula 'R' = 'r'
+paraMinuscula 'S' = 's'
+paraMinuscula 'T' = 't'
+paraMinuscula 'U' = 'u'
+paraMinuscula 'V' = 'v'
+paraMinuscula 'W' = 'w'
+paraMinuscula 'X' = 'x'
+paraMinuscula 'Y' = 'y'
+paraMinuscula 'Z' = 'z'
+paraMinuscula c   = c   -- Mantém outros caracteres como estão
 
 
 -- Função 31: mediana
